@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star International - Water Treatment & Testing Selector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            background-color: #003d7a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .header h3 {
+            color: white;
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        /* Quiz Styles */
+        .quiz-container {
+            background-color: #fff;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .quiz-header {
+            background-color: #003d7a;
+            color: white;
+            padding: 15px 20px;
+            margin: -30px -30px 20px -30px;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .quiz-header:hover {
+            background-color: #00508f;
+        }
+        
+        .quiz-toggle {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .quiz-content {
+            display: block;
+        }
+        
+        .quiz-content.hidden {
+            display: none;
+        }
+        
+        .quiz-question {
+            margin: 20px 0;
+        }
+        
+        .quiz-question h4 {
+            color: #003d7a;
+            margin-bottom: 15px;
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .quiz-option {
+            background-color: #f9f9f9;
+            border: 2px solid #e0e0e0;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz-option:hover {
+            background-color: #e8f4f8;
+            border-color: #003d7a;
+        }
+        
+        .quiz-option.selected {
+            background-color: #003d7a;
+            color: white;
+            border-color: #003d7a;
+        }
+        
+        .quiz-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .quiz-btn {
+            background-color: #003d7a;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .quiz-btn:hover {
+            background-color: #00508f;
+        }
+        
+        .quiz-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .quiz-btn.secondary {
+            background-color: #6c757d;
+        }
+        
+        .quiz-btn.secondary:hover {
+            background-color: #5a6268;
+        }
+        
+        .quiz-result {
+            background-color: #e8f4f8;
+            border: 2px solid #003d7a;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .quiz-result h4 {
+            color: #003d7a;
+            margin-top: 0;
+        }
+        
+        /* Collapsible Section Styles */
+        .section {
+            border-left: 4px solid #003d7a;
+            padding-left: 20px;
+            margin: 20px 0;
+            background-color: #fff;
+            border-radius: 0 8px 8px 0;
+            overflow: hidden;
+        }
+        
+        .section-header {
+            color: #003d7a;
+            padding: 15px 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        
+        .section-header:hover {
+            color: #00508f;
+        }
+        
+        .section-header h3 {
+            margin: 0;
+        }
+        
+        .section-toggle {
+            font-size: 24px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .section-toggle.rotated {
+            transform: rotate(180deg);
+        }
+        
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .section-content.expanded {
+            max-height: 3000px;
+        }
+        
+        .content-box {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        
+        .content-box-white {
+            background-color: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .content-box-highlight {
+            background-color: #e8f4f8;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #003d7a;
+        }
+        
+        .content-box h4 {
+            margin-top: 0;
+            color: #555;
+        }
+        
+        .content-box-highlight h4 {
+            margin-top: 0;
+            color: #003d7a;
+        }
+        
+        .footer {
+            background-color: #003d7a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin: 30px 0 20px 0;
+            border-radius: 8px;
+        }
+        
+        .footer p {
+            margin: 0;
+            font-size: 18px;
+        }
+        
+        .footer a {
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        a {
+            color: #003d7a;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin: 5px 0;
+        }
+        
+        .expand-all-container {
+            text-align: right;
+            margin: 20px 0;
+        }
+        
+        .expand-all-btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .expand-all-btn:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h3>Which onboard water system needs treatment or testing?</h3>
+    </div>
+
+    <!-- INTERACTIVE QUIZ -->
+    <div class="quiz-container">
+        <div class="quiz-header" onclick="toggleQuiz()">
+            <h3 style="margin: 0;">🧭 Not sure where to start? Take our quick quiz</h3>
+            <span class="quiz-toggle" id="quizToggle">−</span>
+        </div>
+        <div class="quiz-content" id="quizContent">
+            <div id="quizQuestion1" class="quiz-question">
+                <h4>What type of water system are you working with?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(1, 'potable', this)">Potable water (drinking water)</div>
+                    <div class="quiz-option" onclick="selectOption(1, 'cooling', this)">Cooling water system</div>
+                    <div class="quiz-option" onclick="selectOption(1, 'boiler', this)">Boiler system</div>
+                    <div class="quiz-option" onclick="selectOption(1, 'ballast', this)">Ballast water</div>
+                    <div class="quiz-option" onclick="selectOption(1, 'sewage', this)">Sewage treatment</div>
+                    <div class="quiz-option" onclick="selectOption(1, 'galley', this)">Galley / food preparation</div>
+                    <div class="quiz-option" onclick="selectOption(1, 'silver', this)">Silver ionisation</div>
+                    <div class="quiz-option" onclick="selectOption(1, 'general', this)">General water disinfection</div>
+                </div>
+            </div>
+
+            <div id="quizQuestion2" class="quiz-question" style="display: none;">
+                <h4>What's your main concern?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(2, 'bacteria', this)">Bacteria & pathogen control (Legionella, E.coli, etc.)</div>
+                    <div class="quiz-option" onclick="selectOption(2, 'scale', this)">Scale & deposit formation</div>
+                    <div class="quiz-option" onclick="selectOption(2, 'corrosion', this)">Corrosion protection</div>
+                    <div class="quiz-option" onclick="selectOption(2, 'biofilm', this)">Biofilm removal</div>
+                    <div class="quiz-option" onclick="selectOption(2, 'testing', this)">Testing & monitoring</div>
+                </div>
+            </div>
+
+            <div id="quizQuestion3" class="quiz-question" style="display: none;">
+                <h4>Do you prefer chlorine-free solutions?</h4>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="selectOption(3, 'yes', this)">Yes - chlorine-free preferred</div>
+                    <div class="quiz-option" onclick="selectOption(3, 'no', this)">No preference</div>
+                </div>
+            </div>
+
+            <div class="quiz-buttons">
+                <button class="quiz-btn secondary" id="backBtn" onclick="previousQuestion()" style="display: none;">← Back</button>
+                <button class="quiz-btn" id="nextBtn" onclick="nextQuestion()" disabled>Next →</button>
+                <button class="quiz-btn" id="resultsBtn" onclick="showResults()" style="display: none;" disabled>Show Results</button>
+                <button class="quiz-btn secondary" id="restartBtn" onclick="restartQuiz()" style="display: none;">Start Over</button>
+            </div>
+
+            <div id="quizResult" style="display: none;"></div>
+        </div>
+    </div>
+
+    <!-- Expand/Collapse All Button -->
+    <div class="expand-all-container">
+        <button class="expand-all-btn" onclick="toggleAllSections()">Expand All Sections</button>
+    </div>
+
+    <!-- COLLAPSIBLE SECTIONS -->
+    <div class="section" id="section-cooling">
+        <div class="section-header" onclick="toggleSection('cooling')">
+            <h3>→ Cooling water system</h3>
+            <span class="section-toggle" id="toggle-cooling">+</span>
+        </div>
+        <div class="section-content" id="content-cooling">
+            <div class="content-box">
+                <p style="color: #666; font-style: italic; margin-bottom: 15px;"><strong>Common challenges:</strong> Corrosion, scale formation, and microbiological fouling in closed and recirculating cooling loops.</p>
+                
+                <strong>Treatment:</strong> <a href="https://star-international.co.uk/product/chemicals/water-treatment/star-organic-inhibitor/" target="_blank" rel="noopener">Star Organic Inhibitor</a> / <a href="https://star-international.co.uk/product/chemicals/water-treatment/star-engine-cooling-water-treatment/" target="_blank" rel="noopener">Star Engine Cooling Water Treatment</a>
+                + <a href="https://star-international.co.uk/products/chemicals/endosan-disinfectant/" target="_blank" rel="noopener">EndoSan</a> for biocide control
+
+                <p><strong>Test kit:</strong> <a href="https://star-international.co.uk/products/chemicals/marine-water-testing-kits/boiler-cooling-water-test-kits/" target="_blank" rel="noopener">Cooling water test kits available</a> – monitors nitrite, chloride, pH and hydrogen peroxide levels</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="section-boiler">
+        <div class="section-header" onclick="toggleSection('boiler')">
+            <h3>→ Boiler system</h3>
+            <span class="section-toggle" id="toggle-boiler">+</span>
+        </div>
+        <div class="section-content" id="content-boiler">
+            <p style="color: #666; font-style: italic; margin: 15px 0;"><strong>Common challenges:</strong> Scale build-up, corrosion, oxygen pitting, and poor condensate return quality.</p>
+            
+            <div class="content-box-white">
+                <h4>For alkalinity &amp; water conditioning:</h4>
+                <strong>Treatment: </strong>Boiler water treatment chemicals available
+                <ul>
+                    <li><a href="https://star-international.co.uk/product/chemicals/water-treatment/star-alka-boiler-treatment/">Star Alka Boiler Treatment</a></li>
+                    <li><a href="https://star-international.co.uk/product/chemicals/water-treatment/star-boiler-liquid-coagulant/">Star Boiler Liquid Coagulant</a></li>
+                    <li><a href="https://star-international.co.uk/product/chemicals/water-treatment/star-boiler-water-conditioner/">Star Boiler Water Conditioner</a></li>
+                    <li><a href="https://star-international.co.uk/product/chemicals/water-treatment/star-autotreat-22372/">Star Autotreat 22372</a></li>
+                    <li><a href="https://star-international.co.uk/product/chemicals/water-treatment/star-oxygen-control-elimin-ox/">Star Oxygen Control (ELIMIN-OX)</a></li>
+                    <li><a href="https://star-international.co.uk/product/chemicals/water-treatment/star-engine-cooling-water-treatment/">Star Engine Cooling Water Treatment</a></li>
+                    <li><a href="https://star-international.co.uk/product/chemicals/water-treatment/star-engine-water-treatment-trac118/">Star Engine Water Treatment (TRAC118)</a></li>
+                    <li><a href="https://star-international.co.uk/products/chemicals/marine-water-testing-kits/boiler-cooling-water-test-kits/">View our boiler and cooling water test kits</a></li>
+                </ul>
+                <strong>Test kit:</strong> <a href="https://star-international.co.uk/products/chemicals/marine-water-testing-kits/boiler-cooling-water-test-kits/" target="_blank" rel="noopener">Boiler water test kits available</a> (alkalinity, chloride, pH, TDS)
+            </div>
+            
+            <div class="content-box-white">
+                <h4>For oxygen control:</h4>
+                <strong>Treatment:</strong> <a href="https://star-international.co.uk/product/chemicals/water-treatment/star-oxygen-scavenger-72120/" target="_blank" rel="noopener">Star Oxygen Scavenger (DEHA)</a> / <a href="https://star-international.co.uk/product/chemicals/water-treatment/star-oxygen-control-elimin-ox/" target="_blank" rel="noopener">Star Oxygen Control</a> / <a href="https://star-international.co.uk/products/chemicals/water-treatment/" target="_blank" rel="noopener">other oxygen scavengers available</a>
+
+                <p><strong>Test kit:</strong> <a href="https://star-international.co.uk/products/chemicals/marine-water-testing-kits/boiler-cooling-water-test-kits/" target="_blank" rel="noopener">Oxygen scavenger test kits available</a> (DEHA, hydrazine, sulphite)</p>
+            </div>
+            
+            <div class="content-box-white">
+                <h4>For hardness control:</h4>
+                <strong>Treatment &amp; testing:</strong> Phosphate-based hardness control products and test kits available - <a href="https://star-international.co.uk/contact-us/" target="_blank" rel="noopener">get in touch</a> for more information.
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="section-potable">
+        <div class="section-header" onclick="toggleSection('potable')">
+            <h3>→ Potable water system</h3>
+            <span class="section-toggle" id="toggle-potable">+</span>
+        </div>
+        <div class="section-content" id="content-potable">
+            <div class="content-box-highlight">
+                <p style="color: #666; font-style: italic; margin-bottom: 15px;"><strong>Common challenges:</strong> Bacterial contamination, chlorine taste and odour, and maintaining potable water safety standards.</p>
+                
+                <h4>Recommended chlorine-free solution</h4>
+                <strong>Treatment:</strong> <a href="https://star-international.co.uk/products/chemicals/endosan-disinfectant/">EndoSan</a> – stabilised hydrogen peroxide with silver. Chlorine-free, alcohol-free, environmentally friendly.
+                <p style="margin-top: 10px; color: #555;">Alternative chlorine-based treatment: <a href="https://star-international.co.uk/product/chemicals/water-treatment/star-hypo-14-15-potable-grade/" target="_blank" rel="noopener">Star Hypo Potable Grade</a> (sodium hypochlorite 14-15%)</p>
+                <strong>Onboard service available:</strong> <a href="https://star-international.co.uk/product/chemicals/endosan-disinfectant/endosan-services/potable-water-shock-dosing/" target="_blank" rel="noopener">Potable Water Shock Dosing</a> – our technicians provide full system disinfection including consultation, implementation, and post-treatment testing.
+
+                <p><strong>Testing: </strong>Chlorine and bacteria test kits available:</p>
+                <ul>
+                    <li><a href="https://star-international.co.uk/product/chemicals/marine-water-testing-kits/potable-water-testing/star-legionella-testing-kit-5-tests/">Star Legionella Testing Kit</a> – rapid on-site Legionella detection</li>
+                    <li><a href="https://star-international.co.uk/product/chemicals/marine-water-testing-kits/test-strips/star-endosan-peroxide-test-strips/">EndoSan Peroxide Test Strips</a> (0–100 ppm and 0–1000 ppm available) – for monitoring disinfectant levels</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="section-ballast">
+        <div class="section-header" onclick="toggleSection('ballast')">
+            <h3>→ Ballast water system</h3>
+            <span class="section-toggle" id="toggle-ballast">+</span>
+        </div>
+        <div class="section-content" id="content-ballast">
+            <div class="content-box">
+                <p style="color: #666; font-style: italic; margin-bottom: 15px;"><strong>Common challenges:</strong> Microbial contamination, biofilm formation, and compliance with discharge and anti-fouling standards.</p>
+                
+                <strong>Treatment:</strong> <a href="https://star-international.co.uk/products/chemicals/endosan-disinfectant/" target="_blank" rel="noopener">EndoSan</a> for effective water disinfection
+
+                <p><strong>Testing:</strong> <a href="https://star-international.co.uk/product/chemicals/marine-water-testing-kits/test-strips/star-endosan-peroxide-test-strips/">EndoSan Peroxide Test Strips</a> (0–100 ppm and 0–1000 ppm available)</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="section-sewage">
+        <div class="section-header" onclick="toggleSection('sewage')">
+            <h3>→ Sewage treatment system</h3>
+            <span class="section-toggle" id="toggle-sewage">+</span>
+        </div>
+        <div class="section-content" id="content-sewage">
+            <div class="content-box">
+                <p style="color: #666; font-style: italic; margin-bottom: 15px;"><strong>Common challenges:</strong> Odour, poor biological activity, and non-compliance with discharge requirements.</p>
+                
+                <strong>Treatment:</strong> <a href="https://star-international.co.uk/product/chemicals/biological-products/star-all-in-one-dpsc-drainpipe-and-sewage-cleaner/" target="_blank" rel="noopener">Star All In One DPSC (Drainpipe &amp; Sewage Cleaner)</a> / <a href="https://star-international.co.uk/product/chemicals/water-treatment/star-hypo-14-15-potable-grade/" target="_blank" rel="noopener">Star Hypo</a> / <a href="https://star-international.co.uk/products/chemicals/endosan-disinfectant/" target="_blank" rel="noopener">EndoSan</a>
+
+                <p><strong>Testing:</strong> Sewage effluent test kits available – <a href="https://star-international.co.uk/contact-us/" target="_blank" rel="noopener">contact us</a> for BOD, COD, chlorine and bacteria testing</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="section-galley">
+        <div class="section-header" onclick="toggleSection('galley')">
+            <h3>→ Galley / food preparation areas</h3>
+            <span class="section-toggle" id="toggle-galley">+</span>
+        </div>
+        <div class="section-content" id="content-galley">
+            <div class="content-box">
+                <p style="color: #666; font-style: italic; margin-bottom: 15px;"><strong>Common challenges:</strong> Surface contamination, bacterial spread, and hygiene risks in catering environments.</p>
+                
+                <strong>Treatment:</strong> <a href="https://star-international.co.uk/product/chemicals/biological-products/star-enzyme-multi-cleaner/" target="_blank" rel="noopener">Star Enzyme Multi Cleaner</a> / <a href="https://star-international.co.uk/products/chemicals/cleaning-and-maintenance/" target="_blank" rel="noopener">Star cleaning products</a> / <a href="https://star-international.co.uk/product/chemicals/endosan-disinfectant/endosan-disinfectant-products/endosan-3/" target="_blank" rel="noopener">EndoSan 3</a> for surface disinfection
+
+                <p><strong>Testing:</strong> <a href="https://star-international.co.uk/products/chemicals/marine-water-testing-kits/" target="_blank" rel="noopener">Hygiene testing solutions available</a> – <a href="https://star-international.co.uk/contact-us/" target="_blank" rel="noopener">contact us</a> to discuss protein and bacteria testing</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="section-silver">
+        <div class="section-header" onclick="toggleSection('silver')">
+            <h3>→ Silver ionisation system</h3>
+            <span class="section-toggle" id="toggle-silver">+</span>
+        </div>
+        <div class="section-content" id="content-silver">
+            <div class="content-box">
+                <p style="color: #666; font-style: italic; margin-bottom: 15px;"><strong>Common challenges:</strong> Maintaining correct silver-ion concentration for microbial control in potable systems.</p>
+                
+                <strong>Testing:</strong> Silver ionisation test kits available - <a href="https://star-international.co.uk/contact-us/" target="_blank" rel="noopener">contact us</a> to discuss your specific needs.
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="section-general" style="background-color: #e8f4f8; padding: 20px; border-radius: 8px;">
+        <div class="section-header" onclick="toggleSection('general')">
+            <h3>→ General water disinfection &amp; biofilm control</h3>
+            <span class="section-toggle" id="toggle-general">+</span>
+        </div>
+        <div class="section-content" id="content-general">
+            <div class="content-box-white" style="border: 2px solid #003d7a;">
+                <p style="color: #666; font-style: italic; margin-bottom: 15px;"><strong>Common challenges:</strong> Maintaining effective disinfection across multiple water systems while reducing chemical complexity.</p>
+                
+                <h4 style="color: #003d7a;">Chlorine-free disinfection solution</h4>
+                <strong>Products:</strong> <a href="https://star-international.co.uk/products/chemicals/endosan-disinfectant/endosan-disinfectant-products/" target="_blank" rel="noopener">EndoSan</a> – available in multiple concentrations (EndoSan 3, EndoSan 8, EndoSan 20, EndoSan 50) for different applications
+
+                <p><strong>Services:</strong> <a href="https://star-international.co.uk/product/chemicals/endosan-disinfectant/endosan-services/potable-water-shock-dosing/" target="_blank" rel="noopener">Onboard potable water shock dosing</a> – professional disinfection service with consultation, implementation and testing</p>
+
+                <p><strong>Testing:</strong> <a href="https://star-international.co.uk/product/chemicals/marine-water-testing-kits/test-strips/star-endosan-peroxide-test-strips/">EndoSan Peroxide Test Strips</a> available (contact us)</p>
+                <p style="margin-bottom: 0;"><strong>Applications:</strong> Potable water, cooling systems, ballast water, sewage treatment, surface disinfection, A/C units, biofilm removal</p>
+                <p style="margin-top: 10px; margin-bottom: 0;"><a style="color: #003d7a; font-weight: bold;" href="https://star-international.co.uk/products/chemicals/endosan-disinfectant/" target="_blank" rel="noopener">Learn more about EndoSan →</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>Need help choosing the right solution?</strong></p>
+        <p><a style="text-decoration: underline;" href="https://star-international.co.uk/contact-us/" target="_blank" rel="noopener">Contact us today →</a> | <a style="text-decoration: none;" href="tel:+441244504500">+44 (0) 1244 504 500</a></p>
+    </div>
+
+    <script>
+        // Quiz functionality
+        let quizAnswers = {
+            question1: null,
+            question2: null,
+            question3: null
+        };
+        let currentQuestion = 1;
+
+        function toggleQuiz() {
+            const content = document.getElementById('quizContent');
+            const toggle = document.getElementById('quizToggle');
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                toggle.textContent = '−';
+            } else {
+                content.classList.add('hidden');
+                toggle.textContent = '+';
+            }
+        }
+
+        function selectOption(questionNum, value, element) {
+            // Remove previous selection
+            const options = document.querySelectorAll(`#quizQuestion${questionNum} .quiz-option`);
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            // Add selection to clicked option
+            element.classList.add('selected');
+            
+            // Store answer
+            quizAnswers[`question${questionNum}`] = value;
+            
+            // Enable next button
+            if (questionNum < 3) {
+                document.getElementById('nextBtn').disabled = false;
+            } else {
+                document.getElementById('resultsBtn').disabled = false;
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestion === 1) {
+                document.getElementById('quizQuestion1').style.display = 'none';
+                document.getElementById('quizQuestion2').style.display = 'block';
+                document.getElementById('backBtn').style.display = 'inline-block';
+                document.getElementById('nextBtn').disabled = true;
+                currentQuestion = 2;
+            } else if (currentQuestion === 2) {
+                document.getElementById('quizQuestion2').style.display = 'none';
+                document.getElementById('quizQuestion3').style.display = 'block';
+                document.getElementById('nextBtn').style.display = 'none';
+                document.getElementById('resultsBtn').style.display = 'inline-block';
+                document.getElementById('resultsBtn').disabled = true;
+                currentQuestion = 3;
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion === 2) {
+                document.getElementById('quizQuestion2').style.display = 'none';
+                document.getElementById('quizQuestion1').style.display = 'block';
+                document.getElementById('backBtn').style.display = 'none';
+                // Re-enable next if question 1 was answered
+                document.getElementById('nextBtn').disabled = (quizAnswers.question1 === null);
+                currentQuestion = 1;
+            } else if (currentQuestion === 3) {
+                document.getElementById('quizQuestion3').style.display = 'none';
+                document.getElementById('quizQuestion2').style.display = 'block';
+                document.getElementById('resultsBtn').style.display = 'none';
+                document.getElementById('nextBtn').style.display = 'inline-block';
+                // Re-enable next if question 2 was answered
+                document.getElementById('nextBtn').disabled = (quizAnswers.question2 === null);
+                currentQuestion = 2;
+            }
+        }
+
+        function showResults() {
+            const systemType = quizAnswers.question1;
+            const concern = quizAnswers.question2;
+            const chlorineFree = quizAnswers.question3;
+
+            // Hide questions
+            document.getElementById('quizQuestion3').style.display = 'none';
+            document.getElementById('resultsBtn').style.display = 'none';
+            document.getElementById('backBtn').style.display = 'none';
+            document.getElementById('restartBtn').style.display = 'inline-block';
+
+            // Generate recommendation
+            let recommendation = generateRecommendation(systemType, concern, chlorineFree);
+            
+            // Show result
+            const resultDiv = document.getElementById('quizResult');
+            resultDiv.innerHTML = recommendation;
+            resultDiv.style.display = 'block';
+
+            // Expand relevant section and scroll to it
+            expandSection(systemType);
+            setTimeout(() => {
+                document.getElementById(`section-${systemType}`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+        }
+
+        function generateRecommendation(systemType, concern, chlorineFree) {
+            let recommendation = '<div class="quiz-result"><h4>Your Recommended Solution:</h4>';
+
+            // System-specific recommendations
+            const recommendations = {
+                'potable': {
+                    title: 'Potable Water System',
+                    chlorineFree: 'We recommend <strong>EndoSan</strong> – a stabilised hydrogen peroxide solution that\'s chlorine-free, alcohol-free, and environmentally friendly. Pair with our <strong>Star Legionella Testing Kit</strong> for monitoring.',
+                    general: 'For potable water treatment, consider <strong>EndoSan</strong> (chlorine-free) or <strong>Star Hypo Potable Grade</strong> (chlorine-based). Use our <strong>Legionella Testing Kit</strong> for regular monitoring.'
+                },
+                'cooling': {
+                    title: 'Cooling Water System',
+                    scale: 'For scale control: <strong>Star Organic Inhibitor</strong> or <strong>Star Engine Cooling Water Treatment</strong>',
+                    bacteria: 'For bacteria control: Add <strong>EndoSan</strong> for biocide control',
+                    general: '<strong>Star Organic Inhibitor</strong> or <strong>Star Engine Cooling Water Treatment</strong> + <strong>EndoSan</strong> for biocide control. Monitor with our cooling water test kits.'
+                },
+                'boiler': {
+                    title: 'Boiler System',
+                    scale: 'For alkalinity & scale control: <strong>Star Alka Boiler Treatment</strong> or <strong>Star Boiler Water Conditioner</strong>',
+                    corrosion: 'For oxygen control & corrosion: <strong>Star Oxygen Scavenger (DEHA)</strong> or <strong>Star Oxygen Control</strong>',
+                    general: 'Choose from our comprehensive range: <strong>Star Alka Boiler Treatment</strong>, <strong>Star Oxygen Scavenger</strong>, or other boiler treatment chemicals based on your specific needs.'
+                },
+                'ballast': {
+                    title: 'Ballast Water System',
+                    chlorineFree: '<strong>EndoSan</strong> provides effective chlorine-free water disinfection. Monitor with <strong>EndoSan Peroxide Test Strips</strong>.',
+                    general: '<strong>EndoSan</strong> for effective water disinfection'
+                },
+                'sewage': {
+                    title: 'Sewage Treatment System',
+                    bacteria: '<strong>Star All In One DPSC</strong> (biological treatment) or <strong>EndoSan</strong> for disinfection',
+                    general: '<strong>Star All In One DPSC</strong>, <strong>Star Hypo</strong>, or <strong>EndoSan</strong> depending on your application'
+                },
+                'galley': {
+                    title: 'Galley / Food Preparation Areas',
+                    bacteria: '<strong>EndoSan 3</strong> for surface disinfection, safe for food preparation areas',
+                    general: '<strong>Star Enzyme Multi Cleaner</strong> for cleaning or <strong>EndoSan 3</strong> for surface disinfection'
+                },
+                'silver': {
+                    title: 'Silver Ionisation System',
+                    general: 'Silver ionisation test kits are available. <a href="https://star-international.co.uk/contact-us/" target="_blank">Contact us</a> to discuss your specific requirements.'
+                },
+                'general': {
+                    title: 'General Water Disinfection',
+                    chlorineFree: '<strong>EndoSan</strong> is your best solution – available in multiple concentrations (EndoSan 3, 8, 20, 50) for different applications including potable water, cooling systems, ballast water, and biofilm removal.',
+                    general: '<strong>EndoSan</strong> provides comprehensive disinfection and biofilm control across all water systems'
+                }
+            };
+
+            const system = recommendations[systemType];
+            recommendation += `<p><strong>System:</strong> ${system.title}</p>`;
+
+            // Add concern-specific or chlorine-free recommendations
+            if (chlorineFree === 'yes' && system.chlorineFree) {
+                recommendation += `<p>${system.chlorineFree}</p>`;
+            } else if (concern && system[concern]) {
+                recommendation += `<p>${system[concern]}</p>`;
+            } else {
+                recommendation += `<p>${system.general}</p>`;
+            }
+
+            recommendation += '<p style="margin-top: 15px; color: #003d7a;"><strong>See the full details in the expanded section below ↓</strong></p>';
+            recommendation += '</div>';
+
+            return recommendation;
+        }
+
+        function restartQuiz() {
+            quizAnswers = { question1: null, question2: null, question3: null };
+            currentQuestion = 1;
+            
+            document.getElementById('quizQuestion1').style.display = 'block';
+            document.getElementById('quizQuestion2').style.display = 'none';
+            document.getElementById('quizQuestion3').style.display = 'none';
+            document.getElementById('quizResult').style.display = 'none';
+            
+            document.getElementById('nextBtn').style.display = 'inline-block';
+            document.getElementById('nextBtn').disabled = true;
+            document.getElementById('backBtn').style.display = 'none';
+            document.getElementById('resultsBtn').style.display = 'none';
+            document.getElementById('restartBtn').style.display = 'none';
+            
+            // Clear all selections
+            document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+        }
+
+        // Collapsible sections functionality
+        function toggleSection(sectionName) {
+            const content = document.getElementById(`content-${sectionName}`);
+            const toggle = document.getElementById(`toggle-${sectionName}`);
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                toggle.textContent = '+';
+                toggle.classList.remove('rotated');
+            } else {
+                content.classList.add('expanded');
+                toggle.textContent = '−';
+                toggle.classList.add('rotated');
+            }
+        }
+
+        function expandSection(sectionName) {
+            const content = document.getElementById(`content-${sectionName}`);
+            const toggle = document.getElementById(`toggle-${sectionName}`);
+            
+            content.classList.add('expanded');
+            toggle.textContent = '−';
+            toggle.classList.add('rotated');
+        }
+
+        let allExpanded = false;
+        function toggleAllSections() {
+            const sections = ['cooling', 'boiler', 'potable', 'ballast', 'sewage', 'galley', 'silver', 'general'];
+            const buttons = document.querySelectorAll('.expand-all-btn');
+            
+            sections.forEach(section => {
+                const content = document.getElementById(`content-${section}`);
+                const toggle = document.getElementById(`toggle-${section}`);
+                
+                if (allExpanded) {
+                    content.classList.remove('expanded');
+                    toggle.textContent = '+';
+                    toggle.classList.remove('rotated');
+                } else {
+                    content.classList.add('expanded');
+                    toggle.textContent = '−';
+                    toggle.classList.add('rotated');
+                }
+            });
+            
+            allExpanded = !allExpanded;
+            buttons.forEach(button => {
+                button.textContent = allExpanded ? 'Collapse All Sections' : 'Expand All Sections';
+            });
+        }
+    </script>
+</body>
+</html>
