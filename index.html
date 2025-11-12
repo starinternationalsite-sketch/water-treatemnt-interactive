@@ -77,9 +77,7 @@ body {
   font-size: 16px;
 }
 .quiz-btn:hover { background-color: #00508f; }
-.quiz-btn.secondary {
-  background-color: #6c757d;
-}
+.quiz-btn.secondary { background-color: #6c757d; }
 .quiz-btn.secondary:hover { background-color: #5a6268; }
 .quiz-btn:disabled { background-color: #ccc; cursor: not-allowed; }
 .quiz-result {
@@ -225,6 +223,42 @@ body {
   </div>
 </div>
 
+<div class="section" id="section-silver">
+  <div class="section-header" onclick="toggleSection('silver')">
+    → Silver ionisation
+    <span id="toggle-silver" class="section-toggle">+</span>
+  </div>
+  <div id="content-silver" class="section-content">
+    <div class="content-box-highlight">
+      <p><strong>Recommended:</strong> Silver ion testing kits and maintenance solutions.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="section-general">
+  <div class="section-header" onclick="toggleSection('general')">
+    → General water disinfection
+    <span id="toggle-general" class="section-toggle">+</span>
+  </div>
+  <div id="content-general" class="section-content">
+    <div class="content-box-highlight">
+      <p><strong>Recommended:</strong> EndoSan for wide-spectrum disinfection of any system type.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="section-testing">
+  <div class="section-header" onclick="toggleSection('testing')">
+    → Testing kits
+    <span id="toggle-testing" class="section-toggle">+</span>
+  </div>
+  <div id="content-testing" class="section-content">
+    <div class="content-box-highlight">
+      <p><strong>Recommended:</strong> Star comparator kits, peroxide test strips, and pH meters for onboard monitoring.</p>
+    </div>
+  </div>
+</div>
+
 <div class="footer">
   <p><strong>Need help choosing the right solution?</strong><br>
   <a href="https://star-international.co.uk/contact-us/" target="_blank" rel="noopener">Contact us →</a> |
@@ -273,13 +307,19 @@ function showResults(){
   let sysName=system.charAt(0).toUpperCase()+system.slice(1);
   result.innerHTML=`<div class="quiz-result"><h4>Your Recommended Solution:</h4>
   <p><strong>System:</strong> ${sysName} water system</p></div>`;
-  const content=document.getElementById(`content-${system}`);
-  if(content){
-    expandSection(system);
-    const clone=content.cloneNode(true);
-    clone.classList.add('embedded-section');
-    result.appendChild(clone);
-  }
+
+  // Show multiple relevant sections
+  const relevantSections=[system,'general','testing','silver'];
+  relevantSections.forEach(id=>{
+    const section=document.getElementById(`content-${id}`);
+    if(section){
+      expandSection(id);
+      const clone=section.cloneNode(true);
+      clone.classList.add('embedded-section');
+      result.appendChild(clone);
+    }
+  });
+
   result.style.display='block';
   result.scrollIntoView({behavior:'smooth'});
   document.getElementById('resultsBtn').style.display='none';
