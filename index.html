@@ -1,353 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star International - Water Treatment & Testing Selector</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .header {
-            background-color: #003d7a;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            margin: 20px 0;
-            border-radius: 8px;
-        }
-        .header h3 { margin: 0; font-size: 24px; }
-        .quiz-container {
-            background-color: #fff;
-            padding: 30px;
-            margin: 20px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .quiz-header {
-            background-color: #003d7a;
-            color: white;
-            padding: 15px 20px;
-            margin: -30px -30px 20px -30px;
-            border-radius: 8px 8px 0 0;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .quiz-header:hover { background-color: #00508f; }
-        .quiz-toggle { font-size: 24px; font-weight: bold; }
-        .quiz-content { display: block; }
-        .quiz-content.hidden { display: none; }
-        .quiz-question { margin: 20px 0; }
-        .quiz-question h4 { color: #003d7a; margin-bottom: 15px; }
-        .quiz-options { display: flex; flex-direction: column; gap: 10px; }
-        .quiz-option {
-            background-color: #f9f9f9;
-            border: 2px solid #e0e0e0;
-            padding: 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .quiz-option:hover {
-            background-color: #e8f4f8;
-            border-color: #003d7a;
-        }
-        .quiz-option.selected {
-            background-color: #003d7a;
-            color: white;
-            border-color: #003d7a;
-        }
-        .quiz-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .quiz-btn {
-            background-color: #003d7a;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
-        .quiz-btn:hover { background-color: #00508f; }
-        .quiz-btn:disabled { background-color: #ccc; cursor: not-allowed; }
-        .quiz-btn.secondary { background-color: #6c757d; }
-        .quiz-btn.secondary:hover { background-color: #5a6268; }
-        .quiz-result {
-            background-color: #e8f4f8;
-            border: 2px solid #003d7a;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-        .quiz-result h4 { color: #003d7a; margin-top: 0; }
-        .embedded-section {
-            margin-top: 20px;
-            border-top: 2px solid #003d7a;
-            padding-top: 15px;
-        }
-        .section {
-            border-left: 4px solid #003d7a;
-            padding-left: 20px;
-            margin: 20px 0;
-            background-color: #fff;
-            border-radius: 0 8px 8px 0;
-            overflow: hidden;
-        }
-        .section-header {
-            color: #003d7a;
-            padding: 15px 0;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            user-select: none;
-        }
-        .section-header:hover { color: #00508f; }
-        .section-toggle { font-size: 24px; font-weight: bold; transition: transform 0.3s ease; }
-        .section-toggle.rotated { transform: rotate(180deg); }
-        .section-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        .section-content.expanded { max-height: 3000px; }
-        .content-box, .content-box-white, .content-box-highlight {
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
-        }
-        .content-box { background-color: #f9f9f9; }
-        .content-box-white {
-            background-color: #fff;
-            border: 1px solid #e0e0e0;
-        }
-        .content-box-highlight {
-            background-color: #e8f4f8;
-            border: 2px solid #003d7a;
-            padding: 20px;
-        }
-        .footer {
-            background-color: #003d7a;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            margin: 30px 0 20px 0;
-            border-radius: 8px;
-        }
-        .footer a { color: white; font-weight: bold; font-size: 18px; text-decoration: none; }
-        .footer a:hover { text-decoration: underline; }
-        .expand-all-container { text-align: right; margin: 20px 0; }
-        .expand-all-btn {
-            background-color: #6c757d;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .expand-all-btn:hover { background-color: #5a6268; }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Star International – Water Treatment & Test Kit Selector</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+.header {
+  background-color: #003d7a;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+.quiz-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 30px;
+  margin-bottom: 30px;
+}
+.quiz-header {
+  background-color: #003d7a;
+  color: white;
+  padding: 15px 20px;
+  margin: -30px -30px 20px -30px;
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.quiz-toggle { font-size: 24px; font-weight: bold; }
+.quiz-content.hidden { display: none; }
+.quiz-question { margin: 20px 0; }
+.quiz-question h4 { color: #003d7a; margin-bottom: 10px; }
+.quiz-option {
+  background-color: #f9f9f9;
+  border: 2px solid #e0e0e0;
+  padding: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+.quiz-option:hover {
+  background-color: #e8f4f8;
+  border-color: #003d7a;
+}
+.quiz-option.selected {
+  background-color: #003d7a;
+  color: white;
+  border-color: #003d7a;
+}
+.quiz-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.quiz-btn {
+  background-color: #003d7a;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.quiz-btn:hover { background-color: #00508f; }
+.quiz-btn.secondary {
+  background-color: #6c757d;
+}
+.quiz-btn.secondary:hover { background-color: #5a6268; }
+.quiz-btn:disabled { background-color: #ccc; cursor: not-allowed; }
+.quiz-result {
+  background-color: #e8f4f8;
+  border: 2px solid #003d7a;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+.quiz-result h4 { color: #003d7a; margin-top: 0; }
+.embedded-section {
+  margin-top: 20px;
+  border-top: 2px solid #003d7a;
+  padding-top: 15px;
+}
+.section {
+  border-left: 4px solid #003d7a;
+  padding-left: 20px;
+  margin: 20px 0;
+  background-color: #fff;
+  border-radius: 0 8px 8px 0;
+  overflow: hidden;
+}
+.section-header {
+  color: #003d7a;
+  padding: 15px 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+.section-toggle { font-size: 24px; font-weight: bold; transition: transform 0.3s ease; }
+.section-toggle.rotated { transform: rotate(180deg); }
+.section-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.section-content.expanded { max-height: 3000px; }
+.content-box-highlight {
+  background-color: #e8f4f8;
+  border: 2px solid #003d7a;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+.footer {
+  background-color: #003d7a;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  margin-top: 40px;
+  border-radius: 8px;
+}
+.footer a { color: white; font-weight: bold; text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+</style>
 </head>
 <body>
-    <div class="header">
-        <h3>Which onboard water system needs treatment or testing?</h3>
+<div class="header">
+  <h3>Which onboard water system needs treatment or testing?</h3>
+</div>
+
+<div class="quiz-container">
+  <div class="quiz-header" onclick="toggleQuiz()">
+    <h3 style="margin:0;">🧭 Not sure where to start? Take our quick quiz</h3>
+    <span id="quizToggle" class="quiz-toggle">−</span>
+  </div>
+  <div id="quizContent" class="quiz-content">
+    <div id="quizQuestion1" class="quiz-question">
+      <h4>What type of water system are you working with?</h4>
+      <div class="quiz-option" onclick="selectOption(1,'potable',this)">Potable (drinking) water</div>
+      <div class="quiz-option" onclick="selectOption(1,'cooling',this)">Cooling water</div>
+      <div class="quiz-option" onclick="selectOption(1,'boiler',this)">Boiler water</div>
+      <div class="quiz-option" onclick="selectOption(1,'sewage',this)">Sewage treatment</div>
     </div>
-
-    <div class="quiz-container">
-        <div class="quiz-header" onclick="toggleQuiz()">
-            <h3 style="margin: 0;">🧭 Not sure where to start? Take our quick quiz</h3>
-            <span class="quiz-toggle" id="quizToggle">−</span>
-        </div>
-        <div class="quiz-content" id="quizContent">
-            <div id="quizQuestion1" class="quiz-question">
-                <h4>What type of water system are you working with?</h4>
-                <div class="quiz-options">
-                    <div class="quiz-option" onclick="selectOption(1, 'potable', this)">Potable water (drinking water)</div>
-                    <div class="quiz-option" onclick="selectOption(1, 'cooling', this)">Cooling water system</div>
-                    <div class="quiz-option" onclick="selectOption(1, 'boiler', this)">Boiler system</div>
-                    <div class="quiz-option" onclick="selectOption(1, 'ballast', this)">Ballast water</div>
-                    <div class="quiz-option" onclick="selectOption(1, 'sewage', this)">Sewage treatment</div>
-                    <div class="quiz-option" onclick="selectOption(1, 'galley', this)">Galley / food preparation</div>
-                    <div class="quiz-option" onclick="selectOption(1, 'silver', this)">Silver ionisation</div>
-                    <div class="quiz-option" onclick="selectOption(1, 'general', this)">General water disinfection</div>
-                </div>
-            </div>
-
-            <div id="quizQuestion2" class="quiz-question" style="display: none;">
-                <h4>What's your main concern?</h4>
-                <div class="quiz-options">
-                    <div class="quiz-option" onclick="selectOption(2, 'bacteria', this)">Bacteria & pathogen control</div>
-                    <div class="quiz-option" onclick="selectOption(2, 'scale', this)">Scale & deposit formation</div>
-                    <div class="quiz-option" onclick="selectOption(2, 'corrosion', this)">Corrosion protection</div>
-                    <div class="quiz-option" onclick="selectOption(2, 'biofilm', this)">Biofilm removal</div>
-                    <div class="quiz-option" onclick="selectOption(2, 'testing', this)">Testing & monitoring</div>
-                </div>
-            </div>
-
-            <div id="quizQuestion3" class="quiz-question" style="display: none;">
-                <h4>Do you prefer chlorine-free solutions?</h4>
-                <div class="quiz-options">
-                    <div class="quiz-option" onclick="selectOption(3, 'yes', this)">Yes - chlorine-free preferred</div>
-                    <div class="quiz-option" onclick="selectOption(3, 'no', this)">No preference</div>
-                </div>
-            </div>
-
-            <div class="quiz-buttons">
-                <button class="quiz-btn secondary" id="backBtn" onclick="previousQuestion()" style="display: none;">← Back</button>
-                <button class="quiz-btn" id="nextBtn" onclick="nextQuestion()" disabled>Next →</button>
-                <button class="quiz-btn" id="resultsBtn" onclick="showResults()" style="display: none;" disabled>Show Results</button>
-                <button class="quiz-btn secondary" id="restartBtn" onclick="restartQuiz()" style="display: none;">Start Over</button>
-            </div>
-
-            <div id="quizResult" style="display: none;"></div>
-        </div>
+    <div id="quizQuestion2" class="quiz-question" style="display:none;">
+      <h4>Do you prefer chlorine-free solutions?</h4>
+      <div class="quiz-option" onclick="selectOption(2,'yes',this)">Yes – chlorine-free preferred</div>
+      <div class="quiz-option" onclick="selectOption(2,'no',this)">No preference</div>
     </div>
-
-    <div class="expand-all-container">
-        <button class="expand-all-btn" onclick="toggleAllSections()">Expand All Sections</button>
+    <div class="quiz-buttons">
+      <button id="backBtn" class="quiz-btn secondary" style="display:none;" onclick="previousQuestion()">← Back</button>
+      <button id="nextBtn" class="quiz-btn" onclick="nextQuestion()" disabled>Next →</button>
+      <button id="resultsBtn" class="quiz-btn" style="display:none;" onclick="showResults()" disabled>Show results</button>
+      <button id="restartBtn" class="quiz-btn secondary" style="display:none;" onclick="restartQuiz()">Start over</button>
     </div>
+    <div id="quizResult" style="display:none;"></div>
+  </div>
+</div>
 
-    <!-- COLLAPSIBLE SECTIONS (keep all your existing ones here) -->
-    <!-- ... leave your section HTML exactly as-is ... -->
-
-    <div class="footer">
-        <p><strong>Need help choosing the right solution?</strong></p>
-        <p><a href="https://star-international.co.uk/contact-us/" target="_blank" rel="noopener">Contact us today →</a> | <a href="tel:+441244504500">+44 (0) 1244 504 500</a></p>
+<!-- Example content sections -->
+<div class="section" id="section-potable">
+  <div class="section-header" onclick="toggleSection('potable')">
+    → Potable water system
+    <span id="toggle-potable" class="section-toggle">+</span>
+  </div>
+  <div id="content-potable" class="section-content">
+    <div class="content-box-highlight">
+      <p><em>Common challenges:</em> Bacterial contamination, chlorine taste and odour.</p>
+      <p><strong>Recommended chlorine-free:</strong> EndoSan – stabilised hydrogen peroxide with silver.</p>
+      <p><strong>Alternative chlorine-based:</strong> Star Hypo Potable Grade (sodium hypochlorite 14-15%).</p>
+      <p><strong>Testing:</strong> Legionella kit or EndoSan peroxide strips for monitoring.</p>
     </div>
+  </div>
+</div>
+
+<div class="section" id="section-cooling">
+  <div class="section-header" onclick="toggleSection('cooling')">
+    → Cooling water system
+    <span id="toggle-cooling" class="section-toggle">+</span>
+  </div>
+  <div id="content-cooling" class="section-content">
+    <div class="content-box-highlight">
+      <p><em>Common challenges:</em> Biofilm, corrosion, and scale build-up.</p>
+      <p><strong>Recommended treatment:</strong> Star Organic Inhibitor and Star Biocide range.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="section-boiler">
+  <div class="section-header" onclick="toggleSection('boiler')">
+    → Boiler system
+    <span id="toggle-boiler" class="section-toggle">+</span>
+  </div>
+  <div id="content-boiler" class="section-content">
+    <div class="content-box-highlight">
+      <p><strong>Recommended products:</strong> Star Alka Boiler Treatment and Star Oxygen Control.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="section-sewage">
+  <div class="section-header" onclick="toggleSection('sewage')">
+    → Sewage treatment system
+    <span id="toggle-sewage" class="section-toggle">+</span>
+  </div>
+  <div id="content-sewage" class="section-content">
+    <div class="content-box-highlight">
+      <p><strong>Recommended:</strong> Star All-In-One DPSC or EndoSan for biological control.</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <p><strong>Need help choosing the right solution?</strong><br>
+  <a href="https://star-international.co.uk/contact-us/" target="_blank" rel="noopener">Contact us →</a> |
+  <a href="tel:+441244504500">+44 (0)1244 504 500</a></p>
+</div>
 
 <script>
-let quizAnswers = { question1: null, question2: null, question3: null };
-let currentQuestion = 1;
+let quizAnswers={question1:null,question2:null};
+let currentQuestion=1;
 
-function toggleQuiz() {
-    const content = document.getElementById('quizContent');
-    const toggle = document.getElementById('quizToggle');
-    if (content.classList.contains('hidden')) {
-        content.classList.remove('hidden');
-        toggle.textContent = '−';
-    } else {
-        content.classList.add('hidden');
-        toggle.textContent = '+';
-    }
-}
-function selectOption(q, val, el) {
-    document.querySelectorAll(`#quizQuestion${q} .quiz-option`).forEach(o=>o.classList.remove('selected'));
-    el.classList.add('selected');
-    quizAnswers[`question${q}`] = val;
-    if (q < 3) document.getElementById('nextBtn').disabled = false;
-    else document.getElementById('resultsBtn').disabled = false;
-}
-function nextQuestion() {
-    if (currentQuestion === 1) {
-        document.getElementById('quizQuestion1').style.display = 'none';
-        document.getElementById('quizQuestion2').style.display = 'block';
-        document.getElementById('backBtn').style.display = 'inline-block';
-        document.getElementById('nextBtn').disabled = true;
-        currentQuestion = 2;
-    } else if (currentQuestion === 2) {
-        document.getElementById('quizQuestion2').style.display = 'none';
-        document.getElementById('quizQuestion3').style.display = 'block';
-        document.getElementById('nextBtn').style.display = 'none';
-        document.getElementById('resultsBtn').style.display = 'inline-block';
-        document.getElementById('resultsBtn').disabled = true;
-        currentQuestion = 3;
-    }
-}
-function previousQuestion() {
-    if (currentQuestion === 2) {
-        document.getElementById('quizQuestion2').style.display = 'none';
-        document.getElementById('quizQuestion1').style.display = 'block';
-        document.getElementById('backBtn').style.display = 'none';
-        document.getElementById('nextBtn').disabled = (quizAnswers.question1 === null);
-        currentQuestion = 1;
-    } else if (currentQuestion === 3) {
-        document.getElementById('quizQuestion3').style.display = 'none';
-        document.getElementById('quizQuestion2').style.display = 'block';
-        document.getElementById('resultsBtn').style.display = 'none';
-        document.getElementById('nextBtn').style.display = 'inline-block';
-        document.getElementById('nextBtn').disabled = (quizAnswers.question2 === null);
-        currentQuestion = 2;
-    }
-}
-function showResults() {
-    const systemType = quizAnswers.question1;
-    const concern = quizAnswers.question2;
-    const chlorineFree = quizAnswers.question3;
-    document.getElementById('quizQuestion3').style.display = 'none';
-    document.getElementById('resultsBtn').style.display = 'none';
-    document.getElementById('backBtn').style.display = 'none';
-    document.getElementById('restartBtn').style.display = 'inline-block';
-    let recommendation = generateRecommendation(systemType, concern, chlorineFree);
-    const resultDiv = document.getElementById('quizResult');
-    resultDiv.innerHTML = recommendation;
-    resultDiv.style.display = 'block';
-
-    // ⬇️ New part: show section content inside results
-    const sectionContent = document.getElementById(`content-${systemType}`);
-    if (sectionContent) {
-        expandSection(systemType);
-        const clone = sectionContent.cloneNode(true);
-        clone.classList.add('embedded-section');
-        resultDiv.appendChild(clone);
-    }
-    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+function toggleQuiz(){
+  const c=document.getElementById('quizContent');
+  const t=document.getElementById('quizToggle');
+  c.classList.toggle('hidden');
+  t.textContent=c.classList.contains('hidden')?'+':'−';
 }
 
-function generateRecommendation(systemType, concern, chlorineFree) {
-    // existing recommendation logic (unchanged)
-    const recommendations = {
-        potable:{title:'Potable Water System', chlorineFree:'We recommend <strong>EndoSan</strong> – chlorine-free...', general:'For potable water treatment, consider <strong>EndoSan</strong> or <strong>Star Hypo</strong>.'},
-        cooling:{title:'Cooling Water System', general:'Use <strong>Star Organic Inhibitor</strong> or <strong>EndoSan</strong>.'},
-        boiler:{title:'Boiler System', general:'Use <strong>Star Alka Boiler Treatment</strong> or <strong>Star Oxygen Control</strong>.'},
-        ballast:{title:'Ballast Water System', general:'<strong>EndoSan</strong> for water disinfection.'},
-        sewage:{title:'Sewage Treatment System', general:'<strong>Star All In One DPSC</strong> or <strong>EndoSan</strong>.'},
-        galley:{title:'Galley Areas', general:'<strong>EndoSan 3</strong> or <strong>Star Enzyme Multi Cleaner</strong>.'},
-        silver:{title:'Silver Ionisation', general:'Contact us for testing kits.'},
-        general:{title:'General Water Disinfection', general:'<strong>EndoSan</strong> for broad disinfection.'}
-    };
-    const sys = recommendations[systemType];
-    return `<div class="quiz-result"><h4>Your Recommended Solution:</h4>
-    <p><strong>System:</strong> ${sys.title}</p>
-    <p>${sys.general}</p></div>`;
+function selectOption(q,val,el){
+  document.querySelectorAll(`#quizQuestion${q} .quiz-option`).forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  quizAnswers[`question${q}`]=val;
+  if(q===1)document.getElementById('nextBtn').disabled=false;
+  if(q===2)document.getElementById('resultsBtn').disabled=false;
 }
 
-function restartQuiz() {
-    quizAnswers={question1:null,question2:null,question3:null};
-    currentQuestion=1;
-    document.getElementById('quizQuestion1').style.display='block';
-    document.getElementById('quizQuestion2').style.display='none';
-    document.getElementById('quizQuestion3').style.display='none';
-    document.getElementById('quizResult').style.display='none';
-    document.getElementById('nextBtn').style.display='inline-block';
-    document.getElementById('nextBtn').disabled=true;
-    document.getElementById('backBtn').style.display='none';
-    document.getElementById('resultsBtn').style.display='none';
-    document.getElementById('restartBtn').style.display='none';
-    document.querySelectorAll('.quiz-option').forEach(o=>o.classList.remove('selected'));
+function nextQuestion(){
+  document.getElementById('quizQuestion1').style.display='none';
+  document.getElementById('quizQuestion2').style.display='block';
+  document.getElementById('backBtn').style.display='inline-block';
+  document.getElementById('nextBtn').style.display='none';
+  document.getElementById('resultsBtn').style.display='inline-block';
+  document.getElementById('resultsBtn').disabled=true;
+  currentQuestion=2;
 }
-function toggleSection(s){const c=document.getElementById(`content-${s}`);const t=document.getElementById(`toggle-${s}`);if(c.classList.contains('expanded')){c.classList.remove('expanded');t.textContent='+';t.classList.remove('rotated');}else{c.classList.add('expanded');t.textContent='−';t.classList.add('rotated');}}
-function expandSection(s){const c=document.getElementById(`content-${s}`);const t=document.getElementById(`toggle-${s}`);c.classList.add('expanded');t.textContent='−';t.classList.add('rotated');}
-let allExpanded=false;
-function toggleAllSections(){
-    const sections=['cooling','boiler','potable','ballast','sewage','galley','silver','general'];
-    sections.forEach(s=>{
-        const c=document.getElementById(`content-${s}`);
-        const t=document.getElementById(`toggle-${s}`);
-        if(allExpanded){c.classList.remove('expanded');t.textContent='+';t.classList.remove('rotated');}
-        else{c.classList.add('expanded');t.textContent='−';t.classList.add('rotated');}
-    });
-    allExpanded=!allExpanded;
-    document.querySelectorAll('.expand-all-btn').
+function previousQuestion(){
+  document.getElementById('quizQuestion2').style.display='none';
+  document.getElementById('quizQuestion1').style.display='block';
+  document.getElementById('backBtn').style.display='none';
+  document.getElementById('nextBtn').style.display='inline-block';
+  document.getElementById('resultsBtn').style.display='none';
+  currentQuestion=1;
+}
+function showResults(){
+  const system=quizAnswers.question1;
+  const result=document.getElementById('quizResult');
+  let sysName=system.charAt(0).toUpperCase()+system.slice(1);
+  result.innerHTML=`<div class="quiz-result"><h4>Your Recommended Solution:</h4>
+  <p><strong>System:</strong> ${sysName} water system</p></div>`;
+  const content=document.getElementById(`content-${system}`);
+  if(content){
+    expandSection(system);
+    const clone=content.cloneNode(true);
+    clone.classList.add('embedded-section');
+    result.appendChild(clone);
+  }
+  result.style.display='block';
+  result.scrollIntoView({behavior:'smooth'});
+  document.getElementById('resultsBtn').style.display='none';
+  document.getElementById('restartBtn').style.display='inline-block';
+}
+function restartQuiz(){
+  quizAnswers={question1:null,question2:null};
+  currentQuestion=1;
+  document.getElementById('quizQuestion1').style.display='block';
+  document.getElementById('quizQuestion2').style.display='none';
+  document.getElementById('quizResult').style.display='none';
+  document.getElementById('nextBtn').disabled=true;
+  document.getElementById('nextBtn').style.display='inline-block';
+  document.getElementById('backBtn').style.display='none';
+  document.getElementById('resultsBtn').style.display='none';
+  document.getElementById('restartBtn').style.display='none';
+  document.querySelectorAll('.quiz-option').forEach(o=>o.classList.remove('selected'));
+}
+function toggleSection(s){
+  const c=document.getElementById(`content-${s}`);
+  const t=document.getElementById(`toggle-${s}`);
+  c.classList.toggle('expanded');
+  t.textContent=c.classList.contains('expanded')?'−':'+';
+}
+function expandSection(s){
+  const c=document.getElementById(`content-${s}`);
+  const t=document.getElementById(`toggle-${s}`);
+  c.classList.add('expanded');
+  t.textContent='−';
+}
+</script>
+</body>
+</html>
